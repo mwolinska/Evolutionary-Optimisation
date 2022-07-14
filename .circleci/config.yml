@@ -21,11 +21,11 @@ jobs:
   docs-build:
       docker:
         - image: cimg/python:3.8.12
+      executor: python/default
       steps:
         - checkout
         - python/install-packages:
             pkg-manager: poetry
-        - run: pip install -U sphinx
         - run:
             name: Build docs
             command: cd docs/ && make html
