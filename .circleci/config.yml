@@ -51,7 +51,7 @@ jobs:
             npm install -g --silent gh-pages@2.0.1
             git config user.email "ci-build@klukas.net"
             git config user.name "ci-build"
-            ls docs/_build/html
+            gh-pages --help
       - run:
           name: Deploy docs to gh-pages branch
           command: gh-pages --dist docs/_build/html
