@@ -25,7 +25,7 @@ jobs:
         - checkout
         - python/install-packages:
             pkg-manager: poetry
-        - run: pip install - U sphinx
+        - run: pip install -U sphinx
         - run:
             name: Build docs
             command: cd docs/ && make html
