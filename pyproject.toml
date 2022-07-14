@@ -8,13 +8,14 @@ authors = ["Marta <mswolinska@gmail.com>"]
 python = "^3.8"
 numpy = "^1.23.0"
 matplotlib = "^3.5.2"
-
-[tool.poetry.dev-dependencies]
 Sphinx = "^5.0.2"
 sphinx-autodoc-typehints = "^1.18.3"
 myst-parser = "^0.18.0"
 sphinx-copybutton = "^0.5.0"
 sphinx-rtd-theme = "^1.0.0"
+
+[tool.poetry.dev-dependencies]
+
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
