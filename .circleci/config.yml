@@ -41,7 +41,7 @@ workflows:
                 - main
           context:
             - GITHUB_CREDS
-      - docs-build
+      - docs-build:
           filters:
             branches:
               only:
