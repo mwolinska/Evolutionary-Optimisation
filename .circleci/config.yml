@@ -31,12 +31,11 @@ jobs:
             pip install myst-parser
             pip install sphinx-copybutton
             pip install sphinx-rtd-theme
-            mkdir -p docs/_build
         - run:
             name: Build docs
             command: cd docs/ && make html
         - persist_to_workspace:
-            root: docs/_build
+            root: docs/_build/
             paths: html
 
 workflows:
