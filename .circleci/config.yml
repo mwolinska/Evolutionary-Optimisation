@@ -60,7 +60,7 @@ jobs:
             gh-pages --help
       - run:
           name: Deploy docs to gh-pages branch
-          command: gh-pages --dist docs/_build/html
+          command: gh-pages --dist docs/build/html
 
 workflows:
   main:
