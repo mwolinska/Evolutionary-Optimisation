@@ -41,7 +41,6 @@ jobs:
         - run: |
             cd docs/
             make html
-            cd docs/build/html && ls
         - persist_to_workspace:
             root: docs/build/
             paths: html
