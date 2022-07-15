@@ -41,9 +41,9 @@ jobs:
         - run: |
             cd docs/
             make html
-            cd docs/_build/html && ls
+            cd docs/build/html && ls
         - persist_to_workspace:
-            root: docs/_build/
+            root: docs/build/
             paths: html
   docs-deploy:
     docker:
@@ -51,7 +51,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: docs/_build
+          at: docs/build
       - run:
           name: Install and configure dependencies
           command: |
