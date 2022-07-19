@@ -9,7 +9,7 @@ class AbstractPhenotype(ABC):
         self._expected_value = None
 
     @abstractmethod
-    def function_to_optimise(self, genotype: Genotype):
+    def optimise_for_list_genotype(self, genotype: Genotype):
         pass
 
     @abstractmethod

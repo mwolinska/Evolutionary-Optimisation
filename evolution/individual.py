@@ -49,8 +49,11 @@ class Individual:
     def get_phenotype_value(self):
         phenotype_instance = Phenotypes.get_phenotype(self.phenotype)
         phenotype_value = None
+
         if self.genotype.genotype_key == GenotypeKey.LIST:
-            phenotype_value = phenotype_instance.function_to_optimise(self.genotype.genotype)
+            phenotype_value = phenotype_instance.optimise_for_list_genotype(self.genotype)
+        elif self.genotype.genotype_key == GenotypeKey.STRING:
+            phenotype_value = phenotype_instance.optimise_for_string_genotype(self.genotype)
 
         return phenotype_value
 
