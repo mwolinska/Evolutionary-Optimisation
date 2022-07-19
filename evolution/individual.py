@@ -1,10 +1,11 @@
 from genotype.genotype import Genotype
 from genotype.genotype_data_model import GenotypeProperties, GenotypeKey
+from phenotype.phenotype_data_model import PhenotypeConfig
 from phenotype.phenotypes_interface import Phenotypes
 
 
 class Individual:
-    def __init__(self, genotype_properties: GenotypeProperties, phenotype: Phenotypes):
+    def __init__(self, genotype_properties: GenotypeProperties, phenotype_config: PhenotypeConfig):
         """An object containing all information of one instance being evaluated.
 
         An individual is effectively an instance being evaluated during the evolution. An individual contains
@@ -14,7 +15,7 @@ class Individual:
             genotype_properties: all genotype properties as required for an individual.
         """
         self.genotype = Genotype(genotype_properties)
-        self.phenotype = phenotype
+        self.phenotype_config = phenotype_config
         self.phenotype_value = self.get_phenotype_value()
         self.fitness_score = None
 
@@ -47,7 +48,9 @@ class Individual:
         self.phenotype_value = self.get_phenotype_value()
 
     def get_phenotype_value(self):
-        phenotype_instance = Phenotypes.get_phenotype(self.phenotype)
+        phenotype_instance = Phenotypes.get_phenotype(self.phenotype_config.phenotype_function)
+        phenotype_instance.expected_value = self.phenotype_config.expected_phenotype_value
+
         phenotype_value = None
 
         if self.genotype.genotype_key == GenotypeKey.LIST:

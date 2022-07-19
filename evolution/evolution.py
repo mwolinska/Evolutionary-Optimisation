@@ -1,10 +1,11 @@
-from typing import Tuple
+from typing import Tuple, Optional, Union
 
 from matplotlib import pyplot as plt
 
 from evolution.population import Population
 from fitness_score.fitness_score import FitnessScore
 from genotype.genotype_data_model import GenotypeProperties
+from phenotype.phenotype_data_model import PhenotypeConfig
 from phenotype.phenotypes_interface import Phenotypes
 
 
@@ -19,6 +20,7 @@ class Evolution:
         gene_value_range: Tuple[int, int] = (0, 1),
         mutation_probability: float = 0.5,
         phenotype: str = "test",
+        expected_phenotype_value: Optional[Union[int, float]] = None,
         crossover: bool = False
     ):
         """Initialises Evolution class.
@@ -46,7 +48,8 @@ class Evolution:
                                                       mutation_probability)
         self.population = Population(n_individuals,
                                      self.genotype_properties,
-                                     phenotype=Phenotypes(phenotype),
+                                     phenotype_config=PhenotypeConfig(phenotype_function=Phenotypes(phenotype),
+                                                                      expected_phenotype_value=expected_phenotype_value),
                                      crossover=crossover)
         self.epochs = n_generations
         self.fitness_over_time = []

@@ -12,7 +12,7 @@ class FitnessFunction(Enum):
 class FitnessScore:
     def __init__(self, individual: Individual, fitness_function: FitnessFunction = None):
 
-        self.phenotype = individual.phenotype
+        self.phenotype = individual.phenotype_config
         self.phenotype_value = individual.phenotype_value
         self.fitness_function = fitness_function if fitness_function is not None else self.get_fitness_function()
 

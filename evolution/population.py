@@ -4,6 +4,7 @@ from typing import Tuple, List
 
 from evolution.individual import Individual, get_score_for_sorting
 from genotype.genotype_data_model import GenotypeProperties, GenotypeKey
+from phenotype.phenotype_data_model import PhenotypeConfig
 from phenotype.phenotypes_interface import Phenotypes
 
 
@@ -11,7 +12,7 @@ class Population:
     def __init__(self,
                  n_individuals: int,
                  genotype_properties: GenotypeProperties,
-                 phenotype: Phenotypes,
+                 phenotype_config: PhenotypeConfig,
                  crossover: bool = False
                  ):
         """Contains all individuals being evaluated.
@@ -28,9 +29,9 @@ class Population:
 
         self.n_individuals = n_individuals
         self.genotype_properties = genotype_properties
-        self.phenotype = phenotype
+        self.phenotype_config = phenotype_config
         self.all_individuals = self._create_population()
-        self.best_individual = Individual(genotype_properties, phenotype)
+        self.best_individual = Individual(genotype_properties, phenotype_config)
         self.crossover = crossover
         self.mutation = True if genotype_properties.mutation_probability > 0 else False
 
@@ -42,7 +43,7 @@ class Population:
         """
         individuals = []
         for i in range(self.n_individuals):
-            new_individual = Individual(self.genotype_properties, self.phenotype)
+            new_individual = Individual(self.genotype_properties, self.phenotype_config)
             individuals.append(new_individual)
         return individuals
 
@@ -57,7 +58,7 @@ class Population:
         """
         new_individuals_list = []
         for i in range(n_new_individuals):
-            new_individuals_list.append(Individual(self.genotype_properties, self.phenotype))
+            new_individuals_list.append(Individual(self.genotype_properties, self.phenotype_config))
 
         return new_individuals_list
 
