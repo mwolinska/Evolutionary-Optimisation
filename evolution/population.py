@@ -24,6 +24,7 @@ class Population:
             n_individuals: number of individuals in the desired population.
             genotype_properties: all properties required to build an individual.
                 As defined by the instance of the Evolution object.
+            phenotype_config: parameters needed to create / act on AbstractPhenotype instance.
             crossover: whether crossover should happen when updating the population.
         """
 

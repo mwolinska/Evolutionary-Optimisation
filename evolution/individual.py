@@ -48,6 +48,13 @@ class Individual:
         self.phenotype_value = self.get_phenotype_value()
 
     def get_phenotype_value(self):
+        """Gets phenotype value for thisIndividual's genotype.
+
+        Function creates an instance of the relevant phenotype and uses it to evaluate the phenotype value.
+
+        Returns:
+            Int or float depending on project parameters.
+        """
         phenotype_instance = Phenotypes.get_phenotype(self.phenotype_config.phenotype_function)
         phenotype_instance.expected_value = self.phenotype_config.expected_phenotype_value
 

@@ -38,6 +38,8 @@ class Evolution:
             gene_value_range: tuple of the minimum and maximum values of a gene.
             mutation_probability: probability of mutation of an individual when updating population.
             phenotype: phenotype used to understand the genotype.
+            expected_phenotype_value: expected value of the phenotype,
+                if applicable it will be used for fitness_scoring
             crossover: whether crossover should happen when updating the population.
         """
 
