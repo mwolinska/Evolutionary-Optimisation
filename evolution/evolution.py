@@ -14,13 +14,8 @@ class Evolution:
         self,
         n_individuals: int,
         n_generations: int,
-        genotype_key: type = list,
-        type_of_gene: type = float,
-        n_genes: int = 1,
-        gene_value_range: Tuple[int, int] = (0, 1),
-        mutation_probability: float = 0.5,
-        phenotype: str = "test",
-        expected_phenotype_value: Optional[Union[int, float]] = None,
+        genotype_properties: GenotypeProperties,
+        phenotype_config: PhenotypeConfig,
         crossover: bool = False
     ):
         """Initialises Evolution class.
@@ -32,27 +27,16 @@ class Evolution:
         Args:
             n_individuals: number of individuals in the desired population.
             n_generations: number of iterations of the algorithm.
-            genotype_key: type of genotype using the GenotypeKey object.
-            type_of_gene: type of gene within the genotype.
-            n_genes: number of genes in an individual's genotype.
-            gene_value_range: tuple of the minimum and maximum values of a gene.
-            mutation_probability: probability of mutation of an individual when updating population.
-            phenotype: phenotype used to understand the genotype.
-            expected_phenotype_value: expected value of the phenotype,
-                if applicable it will be used for fitness_scoring
+            genotype_properties: all properties required to build an individual.
+                As defined by the GenotypeProperties class.
+            phenotype_config: parameters needed to create / act on AbstractPhenotype instance.
             crossover: whether crossover should happen when updating the population.
         """
-
-        self.genotype_properties = GenotypeProperties(GenotypeKey(genotype_key),
-                                                      Gene(type_of_gene),
-                                                      n_genes,
-                                                      gene_value_range,
-                                                      mutation_probability)
+        self.genotype_properties = genotype_properties
 
         self.population = Population(n_individuals,
                                      self.genotype_properties,
-                                     phenotype_config=PhenotypeConfig(phenotype_function=Phenotypes(phenotype),
-                                                                      expected_phenotype_value=expected_phenotype_value),
+                                     phenotype_config=phenotype_config,
                                      crossover=crossover)
         self.epochs = n_generations
         self.fitness_over_time = []
@@ -88,9 +72,7 @@ class Evolution:
 
     def record_performance(self):
         """Record fitness function value of the current best individual."""
-
         self.fitness_over_time.append(self.population.best_individual.fitness_score)
-        print(f"the fitness over time is {self.fitness_over_time}")
 
     def plot_performance(self):
         """Plots score of the best individual at each generation."""
