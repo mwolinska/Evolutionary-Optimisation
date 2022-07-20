@@ -15,6 +15,8 @@ class GenotypeKey(Enum):
 
 
 class Gene(Enum):
+    """Class defining what genes can be used within the genotype."""
+    # TODO change back to string
     INTEGER = int
     STRING = str
     BINARY = bin
@@ -32,8 +34,8 @@ class GenotypeProperties:
         value_range: tuple of minimum and maximum values for a gene.
         mutation_probability: probability of a gene mutating in one generation.
     """
-    genotype_key: GenotypeKey
-    type_of_gene: Gene
-    n_genes: int
-    value_range: Tuple[int, int]
-    mutation_probability: float
+    genotype_key: GenotypeKey = GenotypeKey.LIST
+    type_of_gene: Gene = Gene.FLOAT
+    n_genes: int = 1
+    value_range: Tuple[int, int] = (0, 1) # TODO change to -inf and plus inf
+    mutation_probability: float = 0.1
