@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 
 from evolution.population import Population
 from fitness_score.fitness_score import FitnessScore
-from genotype.genotype_data_model import GenotypeProperties
+from genotype.genotype_data_model import GenotypeProperties, GenotypeKey, Gene
 from phenotype.phenotype_data_model import PhenotypeConfig
 from phenotype.phenotypes_interface import Phenotypes
 
