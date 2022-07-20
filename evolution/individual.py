@@ -20,7 +20,7 @@ class Individual:
         self.fitness_score = None
 
     @classmethod
-    def from_genotype(cls, genotype_properties: GenotypeProperties, new_genotype):
+    def from_genotype(cls, genotype_properties: GenotypeProperties, new_genotype, phenotype_config):
         """Creates an individual from a genotype.
 
         An individual is created, but instead of a random set of genes the new_all_genes argument
@@ -33,7 +33,7 @@ class Individual:
                 individual.all_genes which contain the new_all_genes information.
         """
         # TODO how to deal with type of new_genotype.
-        new_individual = cls(genotype_properties)
+        new_individual = cls(genotype_properties, phenotype_config=phenotype_config)
         new_individual.genotype.genotype = new_genotype
         return new_individual
 

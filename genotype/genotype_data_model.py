@@ -32,8 +32,8 @@ class GenotypeProperties:
         value_range: tuple of minimum and maximum values for a gene.
         mutation_probability: probability of a gene mutating in one generation.
     """
-    genotype_key: type
-    type_of_gene: type
+    genotype_key: GenotypeKey
+    type_of_gene: Gene
     n_genes: int
     value_range: Tuple[int, int]
     mutation_probability: float

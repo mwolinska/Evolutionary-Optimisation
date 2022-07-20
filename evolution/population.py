@@ -169,7 +169,7 @@ class Population:
         child_genotype_part_1 = parent_1.genotype.genotype[:gene_slice_index]
         child_genotype_part_2 = parent_2.genotype.genotype[gene_slice_index:]
         child_all_genes = child_genotype_part_1 + child_genotype_part_2
-        child = Individual.from_genotype(self.genotype_properties, child_all_genes)
+        child = Individual.from_genotype(self.genotype_properties, child_all_genes, self.phenotype_config)
         return child
 
     def split_elite_individuals(self) -> Tuple[List[Individual], List[Individual]]:

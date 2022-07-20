@@ -88,14 +88,14 @@ class Genotype:
             Type aligned to the one defined by GenotypeKey. Currently, list or str
         """
         all_genes = None
-        if genotype_properties.genotype_key == list:
+        if genotype_properties.genotype_key == GenotypeKey.LIST:
             all_genes = []
             for i in range(genotype_properties.n_genes):
-                if genotype_properties.type_of_gene == int:
+                if genotype_properties.type_of_gene == Gene.INTEGER:
                     new_gene = random.randint(genotype_properties.value_range[0], genotype_properties.value_range[1])
-                elif genotype_properties.type_of_gene == float:
+                elif genotype_properties.type_of_gene == Gene.FLOAT:
                     new_gene = random.uniform(genotype_properties.value_range[0], genotype_properties.value_range[1])
-                elif genotype_properties.type_of_gene == bin:
+                elif genotype_properties.type_of_gene == Gene.BINARY:
                     new_gene = random.randint(0, 1)
                 else:
                     raise NotImplementedError

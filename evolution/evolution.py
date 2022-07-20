@@ -43,11 +43,12 @@ class Evolution:
             crossover: whether crossover should happen when updating the population.
         """
 
-        self.genotype_properties = GenotypeProperties(genotype_key,
-                                                      type_of_gene,
+        self.genotype_properties = GenotypeProperties(GenotypeKey(genotype_key),
+                                                      Gene(type_of_gene),
                                                       n_genes,
                                                       gene_value_range,
                                                       mutation_probability)
+
         self.population = Population(n_individuals,
                                      self.genotype_properties,
                                      phenotype_config=PhenotypeConfig(phenotype_function=Phenotypes(phenotype),
