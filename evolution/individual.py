@@ -56,7 +56,9 @@ class Individual:
             Int or float depending on project parameters.
         """
         phenotype_instance = Phenotypes.get_phenotype(self.phenotype_config.phenotype_function)
-        phenotype_instance.expected_value = self.phenotype_config.expected_phenotype_value
+        # TODO this is a placeholder to handle setting expecting value until I fix the setter
+        if self.phenotype_config.expected_phenotype_value is not None:
+            phenotype_instance.expected_value = self.phenotype_config.expected_phenotype_value
 
         phenotype_value = None
 
