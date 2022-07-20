@@ -6,7 +6,6 @@ from genotype.genotype_data_model import GenotypeProperties, GenotypeKey
 from phenotype.phenotype_data_model import PhenotypeConfig
 from phenotype.phenotypes_interface import Phenotypes
 
-
 class Population:
     def __init__(self,
                  n_individuals: int,

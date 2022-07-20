@@ -1,22 +1,27 @@
+from dataclasses import dataclass
 from typing import Tuple, Optional, Union
 
 from matplotlib import pyplot as plt
 
 from evolution.population import Population
 from fitness_score.fitness_score import FitnessScore
-from genotype.genotype_data_model import GenotypeProperties, GenotypeKey, Gene
+from genotype.genotype_data_model import GenotypeProperties
 from phenotype.phenotype_data_model import PhenotypeConfig
-from phenotype.phenotypes_interface import Phenotypes
 
+@dataclass
+class EvolutionProperties:
+    n_individuals: int = 100
+    n_generations: int = 20
+    genotype_properties: GenotypeProperties = GenotypeProperties()
+    phenotype_config: PhenotypeConfig = PhenotypeConfig()
+    crossover: bool = False
+    crossover_percentage: float = 0.5
+    elitism: float = 0.1
 
 class Evolution:
     def __init__(
         self,
-        n_individuals: int,
-        n_generations: int,
-        genotype_properties: GenotypeProperties,
-        phenotype_config: PhenotypeConfig,
-        crossover: bool = False
+        evolution_properties: EvolutionProperties
     ):
         """Initialises Evolution class.
 
@@ -25,20 +30,15 @@ class Evolution:
         of the algorithm.
 
         Args:
-            n_individuals: number of individuals in the desired population.
-            n_generations: number of iterations of the algorithm.
-            genotype_properties: all properties required to build an individual.
-                As defined by the GenotypeProperties class.
-            phenotype_config: parameters needed to create / act on AbstractPhenotype instance.
-            crossover: whether crossover should happen when updating the population.
+            evolution_properties: contains all required information to run an optimisation.
         """
-        self.genotype_properties = genotype_properties
+        self.genotype_properties = evolution_properties.genotype_properties
 
-        self.population = Population(n_individuals,
+        self.population = Population(evolution_properties.n_individuals,
                                      self.genotype_properties,
-                                     phenotype_config=phenotype_config,
-                                     crossover=crossover)
-        self.epochs = n_generations
+                                     phenotype_config=evolution_properties.phenotype_config,
+                                     crossover=evolution_properties.crossover)
+        self.epochs = evolution_properties.n_generations
         self.fitness_over_time = []
 
     def evolve(self):
