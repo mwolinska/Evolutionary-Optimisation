@@ -1,5 +1,4 @@
-import random
-from random import random, shuffle
+from random import random, shuffle, randint
 from typing import Tuple, List
 
 from evolution.individual import Individual, get_score_for_sorting
@@ -140,7 +139,7 @@ class Population:
             return parent_1, parent_2
         else:
             last_slice_index = self.genotype_properties.n_genes - 1
-            gene_slice_index = random.randint(1, last_slice_index)
+            gene_slice_index = randint(1, last_slice_index)
 
             if self.genotype_properties.genotype_key == GenotypeKey.LIST:
                 child_1 = self.single_point_crossover_for_list(parent_1, parent_2, gene_slice_index)
